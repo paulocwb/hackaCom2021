@@ -10,6 +10,8 @@ class CreateUser {
 		this.data  = request.body;
 		try{
 			const isValid = await this.validateBody();
+			console.log(isValid);
+			return httpResponses.createdResponse({message:'created'})
 		}catch(err){
 			httpResponses.badRequestResponse({message:err.message,details:err,response});
 	

@@ -1,5 +1,5 @@
 
-import {userModel} from "../../user/model/user.model.js";
+import {userModel} from "../model/user.model.js";
 
 class UserRepository{
 
@@ -9,3 +9,5 @@ class UserRepository{
 		return user;
 	}
 }
+
+export { UserRepository };
