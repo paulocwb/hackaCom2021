@@ -1,0 +1,288 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "Very Useful Tools to Remember",
+		"description": "Developer Use Guide.",
+		"version": "1.0.0",
+		"contact": {
+			"email": "paulo@hire-me.dev"
+		}
+	},
+	"servers": [
+		{
+			"url": "https://pauloestraich-apps.herokuapp.com/"
+		}
+	],
+	"tags": [
+		{
+			"name": "Tools",
+			"description": "All the amazing tools you need to enhance your productivity"
+		},
+		{
+			"name": "Token",
+			"description": "Get the JWT to provide access to API resources"
+		}
+	],
+	"paths": {
+		"/api/v1/tools": {
+			"post": {
+				"tags": ["Tools"],
+				"summary": "Insert a new Tool on list",
+				"description": "Save a new tool into database",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "Object",
+								"$ref": "#/components/schemas/Post"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "Object",
+									"Properties": {
+										"_id": {
+											"type": "string"
+										},
+										"title": {
+											"type": "string"
+										},
+										"description": {
+											"type": "string"
+										},
+										"link": {
+											"type": "string"
+										},
+										"tags": {
+											"type": []
+										}
+									},
+									"example": {
+										"_id": "358123952-2e75-372f-942e-156598752a66",
+										"title": "todoist",
+										"description": "task manager",
+										"link": "https://www.todoist.com",
+										"tags": [
+											"TODO",
+											"AGENDA MANAGEMENT",
+											"ORGANIZATION",
+											"PRODUCTIVITY"
+										]
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					}
+				},
+				"security": [
+					{
+						"bearerToken": []
+					}
+				]
+			},
+			"get": {
+				"security": [
+					{
+						"bearerToken": []
+					}
+				],
+				"tags": ["Tools"],
+				"summary": "List all Tools.",
+				"description": "List all tools",
+				"parameters": [
+					{
+						"name": "tag",
+						"in": "query",
+						"description": "Tags to filter by",
+						"required": false,
+						"schema": {
+							"type": "array",
+							"items":{
+								"type":"string"
+							}
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Get"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					}
+				}
+			}
+		},
+		"/api/v1/tools/{id}": {
+			"delete": {
+				"security": [
+					{
+						"bearerToken": []
+					}
+				],
+				"tags": ["Tools"],
+				"summary": "Remove a Tool from database",
+				"description": "Sack out a tool you may not like anymore",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of tool to be deleted",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "Object",
+									"$ref": "#/components/schemas/Delete"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					}
+				}
+			}
+		},
+		"/api/v1/token":{
+			"get":{
+				"tags": ["Token"],
+				"summary": "JWT Token that give access to application routes",
+				"description": "30 Minutes valid token to attach on the Authorization header of your request",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "Object",
+									"Properties": {
+										"token": {
+											"type": "string"
+										}
+									},
+									"example": {
+										"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Post": {
+				"type": "Object",
+				"Properties": {
+					"title": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"link": {
+						"type": "string"
+					},
+					"tags": [
+						{
+							"type": "string"
+						}
+					]
+				},
+				"example": {
+					"title": "todoist",
+					"description": "task manager",
+					"link": "https://www.todoist.com",
+					"tags": [
+						"Todo",
+						"Agenda management",
+						"organization",
+						"productivity"
+					]
+				}
+			},
+			"Get": {
+				"type": "Object",
+				"Properties": {
+					"_id": {
+						"type": "string"
+					},
+					"active": {
+						"type": "boolean"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					}
+				},
+				"example": {
+					"title": "todoist",
+					"description": "task manager",
+					"link": "https://www.todoist.com",
+					"tags": [
+						"Todo",
+						"Agenda management",
+						"organization",
+						"productivity"
+					]
+				}
+			},
+			"Delete": {
+				"type": "Object",
+				"Properties": {
+					"Error": {
+						"type": "string"
+					}
+				},
+				"example": {
+					"Error": "Not found a record for id: 1212-6421kq-12316"
+				}
+			}
+		},
+		"securitySchemes": {
+			"bearerToken": {
+				"type": "http",
+				"scheme": "bearer",
+				"bearerFormat": "JWT"
+			}
+		}
+	}
+}

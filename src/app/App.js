@@ -1,9 +1,10 @@
 import express from "express"
-
+import { swaggerUI,swaggerSetup } from "../docs/config";
 class App {
 
 	constructor() {
 		this.app = express();
+		this.app.use('/api/v1/docs',swaggerUI.serve, swaggerUI.setup(swaggerSetup))
 	}
 
 	loadRoute(path, router) {

@@ -1,17 +1,22 @@
 import mongoose from "mongoose";
 
-const userSchema = mongoose.Schema(
+const membersSchema = mongoose.Schema({
+	name:{}
+})
+
+const instituteSchema = mongoose.Schema(
 	{
 		_id: { type: String },
 		email: { type: String, required: true, unique: true },
-		name: { type: String, required },
+		OrgName: { type: String, required },
 		password: { type: String, required: true },
-		role: { type: String, enum: ["osc", "university"] },
+		role: { type: String, enum: ["OSC", "INSTITUICAO"] },
+		members:[membersSchema],
 		active: { type: Boolean, default: true },
 	},
 	{ timestamps: true }
 );
 
-const userModel = mongoose.model("User", userSchema);
+const instituteModel = mongoose.model("User", instituteSchema);
 
-export { userModel };
+export { instituteModel };
