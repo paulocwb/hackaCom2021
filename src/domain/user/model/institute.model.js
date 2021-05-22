@@ -1,8 +1,13 @@
 import mongoose from "mongoose";
 import {hashPwd} from "../../../app/utils/encryptPass";
 
-const membersSchema = mongoose.Schema({
-	name:{}
+const membersSchema = mongoose.Schema(
+	{
+	name:{type: String,unique: true},
+	email:{type: String,required: true,unique: true},
+	password:{type: String,required: true},
+	cargo:{type: String,enum:['professor','colaborador','coordenador'],required: true},
+	active: { type:Boolean, default: true } 
 })
 
 const instituteSchema = mongoose.Schema(
@@ -25,8 +30,7 @@ instituteSchema.pre("save", async function(){
 	if (this.isNew){
 		this.password = await hashPwd(this.password);
 	}
-})
-
+});
 const instituteModel = mongoose.model("User", instituteSchema);
 
 export { instituteModel };

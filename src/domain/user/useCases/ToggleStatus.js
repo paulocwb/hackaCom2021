@@ -7,20 +7,20 @@ class ToggleStatus {
 
 	async execute(request, response) {
 
-		const userId = request.params.id;
+		const id = request.params.id;
 
 		try{
 
-			const user = await this.repository.getById(userId);
+			const user = await this.repository.getById(id);
 			if(!user) return httpResponses.notFoundResponse({details:`Not found user with the id provided`},response);
 
 			const value = !user.active;
 
-			await this.repository.toggleAccountStatus({userId,value});
+			await this.repository.toggleAccountStatus({id,value});
 			const message = "Account status successfully changed";
 
 			return httpResponses.okResponse({message},response);
-
+			
 		}catch(err){
 			return httpResponses.badRequestResponse(
 				{ message: err.message, details: err },response)
