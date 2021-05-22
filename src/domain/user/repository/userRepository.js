@@ -9,19 +9,28 @@ class UserRepository{
 		await User.save();
 		return User.toObject();
 	}
+	async insertMember({institute,name,email,password,cargo}){
+		const member = await instituteModel.findByIdAndUpdate(institute,
+			{$push:{members:{name,email,password,cargo}}},
+			{new:true});
+		return member.toObject();
+	}
 
+	async findMemberByInstitute({institute}){
+		const member = await instituteModel.findOne({_id:institute},'members').lean(true);
+		return member;
+	}
+	
 	async getById(id){
-		console.log('id',id);
 		return await instituteModel.findById(id).lean(true);
 
 	}
 
 	async toggleAccountStatus({id,value}){
-
-		const up =  await instituteModel.updateOne({_id:id},{email:'abcd'}).lean(true);
-		console.log(up);
-		return
+		await instituteModel.updateOne({_id:id},{active:value});
+		return;
 	}
+
 }
 
 export { UserRepository };

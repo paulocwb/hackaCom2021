@@ -46,6 +46,16 @@ class HttpResponses {
 		};
 
 		return response.status(payload.statusCode).json(payload);
+	};
+	conflictResponse({ message, details = "" },response) {
+		if (!message) message = "The Resource does not exist";
+		const payload = {
+			statusCode: 409,
+			status: "Conflict",
+			message,
+			details,
+		};
+		return response.status(payload.statusCode).json(payload);
 	}
 }
 
