@@ -1,1 +1,1 @@
-export {institute} from "./institute.route";
+export  * as institute from "./institute.route";

@@ -4,10 +4,11 @@ class App {
 
 	constructor() {
 		this.app = express();
-		this.app.use('/api/v1/docs',swaggerUI.serve, swaggerUI.setup(swaggerSetup))
+		this.app.use('/api/v1/docs',swaggerUI.serve, swaggerUI.setup(swaggerSetup));
 	}
 
 	loadRoute(path, router) {
+		console.log(path);
 		this.app.use(path, router);
 	}
 

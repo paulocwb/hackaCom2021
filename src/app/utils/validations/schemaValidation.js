@@ -1,10 +1,13 @@
 import Joi from "joi";
 
-const createUserSchema = Joi.object.keys({
-	email: Joi.string().email(),
-	name: Joi.string().min(4),
+const instituteSchema = Joi.object({
+	email: Joi.string().email().required(),
+	name: Joi.string().min(4).required(),
 	role: Joi.string().required(),
-	password: Joi.string().min(5),
+	orgname: Joi.string().required(),
+	password: Joi.string().min(5).required(),
+	website: Joi.string(),
+	about: Joi.string(),
 });
 
-export { createUserSchema };
+export { instituteSchema };
