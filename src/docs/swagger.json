@@ -1,419 +1,432 @@
 {
-  "openapi": "3.0.1",
+  "swagger": "2.0",
   "info": {
-    "title": "Swagger - Linkedu - HackCom - #time18",
-    "description": "Guia do Desenvolvedor.",
+    "description": "Guia do Desenvolvedor",
     "version": "1.0.0",
+    "title": "Swagger - Linkedu - HackCom - #time18",
+    "termsOfService": "http://linkedunion.io/terms/",
     "contact": {
       "email": "contato@linkedunion.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "servers": [
-    {
-      "url": "https://linkedunion.io"
-    }
-  ],
+  "host": "linkedunion.io",
+  "basePath": "/v1",
   "tags": [
     {
-      "name": "Instituição",
-      "description": "Tudo sobre a instituição"
-    },
-    {
-      "name": "Token",
-      "description": "Solicitar criação do Token para acesso a áreas restritas"
-    },
-    {
-      "name": "Logoff",
-      "description": "Solicitar cancelamento do Token de acesso a áreas restritas"
-    },
-    {
-      "name": "Oscs",
-      "description": "Tudo sobre a OSCs"
+      "name": "instituicao",
+      "description": "Tudo sobre Instituição",
+      "externalDocs": {
+        "description": "Veja mais",
+        "url": "http://linkedunion.io"
+      }
     }
   ],
+  "schemes": ["https", "http"],
   "paths": {
-    "/api/v1/instituicao": {
+    "/instituicao": {
       "post": {
-        "tags": ["Instituição"],
-        "summary": "Insert a new Tool on list",
-        "description": "Save a new tool into database",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "Object",
-                "$ref": "#/components/schemas/Post"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "Object",
-                  "Properties": {
-                    "_id": {
-                      "type": "string"
-                    },
-                    "title": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "link": {
-                      "type": "string"
-                    },
-                    "tags": {
-                      "type": []
-                    }
-                  },
-                  "example": {
-                    "_id": "358123952-2e75-372f-942e-156598752a66",
-                    "title": "todoist",
-                    "description": "task manager",
-                    "link": "https://www.todoist.com",
-                    "tags": [
-                      "TODO",
-                      "AGENDA MANAGEMENT",
-                      "ORGANIZATION",
-                      "PRODUCTIVITY"
-                    ]
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security": [
-          {
-            "bearerToken": []
-          }
-        ]
-      },
-      "get": {
-        "security": [
-          {
-            "bearerToken": []
-          }
-        ],
-        "tags": ["Instituição"],
-        "summary": "Listar todas as instituições.",
-        "description": "Listar todas as instituições",
+        "tags": ["instituicao"],
+        "summary": "Inserir uma nova instituição",
+        "description": "",
+        "operationId": "addInstituicao",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "parameters": [
           {
-            "name": "tag",
-            "in": "query",
-            "description": "Tags to filter by",
-            "required": false,
+            "in": "body",
+            "name": "body",
+            "description": "Dados da instituição",
+            "required": true,
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
+              "$ref": "#/definitions/Instituicao"
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Get"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
+          "405": {
+            "description": "Invalid input"
           }
-        }
-      }
-    },
-    "/api/v1/instituicao/{id}": {
-      "get": {
+        },
         "security": [
           {
-            "bearerToken": []
+            "petstore_auth": ["write:pets", "read:pets"]
           }
-        ],
-        "tags": ["Instituição"],
-        "summary": "Retornar dados apenas da instituição",
-        "description": "Retornar dados apenas da instituição",
+        ]
+      }
+    },
+    "/instituicao/{id}": {
+      "get": {
+        "tags": ["instituicao"],
+        "summary": "Encontrar Instituição por ID",
+        "description": "Retorna dados da Instituição",
+        "operationId": "getInstituicaoById",
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID of tool to be deleted",
+            "description": "ID da Instituição",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Instituicao"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Instituição não encontrada"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "put": {
+        "tags": ["instituicao"],
+        "summary": "Atualizar dados da instituição",
+        "description": "",
+        "operationId": "updateInstituicao",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da Instituição que precisa ser atualizado",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Dados da instituição",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/Instituicao"
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "Object",
-                  "$ref": "#/components/schemas/Delete"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
+          "405": {
+            "description": "Invalid input"
           }
-        }
+        },
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ]
       },
       "delete": {
-        "security": [
-          {
-            "bearerToken": []
-          }
-        ],
-        "tags": ["Instituição"],
-        "summary": "Remove a Tool from database",
-        "description": "Sack out a tool you may not like anymore",
+        "tags": ["instituicao"],
+        "summary": "Deletar uma Instituição",
+        "description": "",
+        "operationId": "deleteInstituicao",
+        "produces": ["application/json"],
         "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "id",
             "in": "path",
-            "description": "ID of tool to be deleted",
+            "description": "ID da Instituição a ser deletada",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "400": {
+            "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "Object",
-                  "$ref": "#/components/schemas/Delete"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/api/v1/oscs": {
-      "post": {
-        "tags": ["Oscs"],
-        "summary": "Insert a new Tool on list",
-        "description": "Save a new tool into database",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "Object",
-                "$ref": "#/components/schemas/Post"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "Object",
-                  "Properties": {
-                    "_id": {
-                      "type": "string"
-                    },
-                    "title": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "link": {
-                      "type": "string"
-                    },
-                    "tags": {
-                      "type": []
-                    }
-                  },
-                  "example": {
-                    "_id": "358123952-2e75-372f-942e-156598752a66",
-                    "title": "todoist",
-                    "description": "task manager",
-                    "link": "https://www.todoist.com",
-                    "tags": [
-                      "TODO",
-                      "AGENDA MANAGEMENT",
-                      "ORGANIZATION",
-                      "PRODUCTIVITY"
-                    ]
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
+            "description": "Instituição não encontrada"
           }
         },
         "security": [
           {
-            "bearerToken": []
+            "petstore_auth": ["write:pets", "read:pets"]
           }
         ]
       }
     },
-    "/api/v1/token": {
-      "post": {
-        "tags": ["Token"],
-        "summary": "JWT Token that give access to application routes",
-        "description": "30 Minutes valid token to attach on the Authorization header of your request",
+    "/instituicao/{id}/member": {
+      "get": {
+        "tags": ["instituicao"],
+        "summary": "Encontrar Membros da Instituição",
+        "description": "Retorna dados dos Membros da Instituição",
+        "operationId": "getInstituicaoMaembers",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da Instituição",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "Object",
-                  "Properties": {
-                    "token": {
-                      "type": "string"
-                    }
-                  },
-                  "example": {
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
-                  }
-                }
-              }
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Instituicao"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Instituição não encontrada"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "post": {
+        "tags": ["instituicao"],
+        "summary": "Adicionar um membro",
+        "description": "",
+        "operationId": "addInstituicaoMember",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da Instituição",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Dados da instituição",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Members"
             }
           }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "400": {
+            "description": "Requisição inválida"
+          },
+          "409": {
+            "description": "Erro"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["instituicao"],
+        "summary": "Deletar um membro da Instituição",
+        "description": "",
+        "operationId": "deleteInstituicaoMembro",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da Instituição a ser deletada",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Instituição não encontrada"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ]
+      }
+    },
+    "/instituicao/{id}/uploadImage": {
+      "post": {
+        "tags": ["instituicao"],
+        "summary": "Atualizar Imagem",
+        "description": "Atualizar Imagem",
+        "operationId": "uploadFile",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da Instituição",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "additionalMetadata",
+            "in": "formData",
+            "description": "Additional data to pass to server",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file to upload",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Members": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Nome da Organização"
+        },
+        "email": {
+          "type": "string",
+          "example": "membro-da-instituicao@email.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "******"
+        },
+        "cargo": {
+          "type": "string",
+          "example": "professor",
+          "enum": ["professor", "colaborador", "coordenador"]
         }
       }
     },
-    "/api/v1/logoff": {
-      "post": {
-        "tags": ["Logoff"],
-        "summary": "Revogar o token de acesso",
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "Object",
-                  "Properties": {
-                    "token": {
-                      "type": "string"
-                    }
-                  },
-                  "example": {
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
-                  }
-                }
-              }
-            }
-          }
+    "Instituicao": {
+      "type": "object",
+      "required": ["email", "orgname", "password", "role", "about"],
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "example": "email@email.com"
+        },
+        "orgname": {
+          "type": "string",
+          "example": "Nome da Organização"
+        },
+        "password": {
+          "type": "string",
+          "example": "********"
+        },
+        "role": {
+          "type": "string",
+          "description": "Tipo da Instituição",
+          "enum": ["OSC", "INSTITUICAO"]
+        },
+        "members": {
+          "$ref": "#/definitions/Members"
+        },
+        "active": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string",
+          "example": "https://www.website.com.br"
+        },
+        "about": {
+          "type": "string",
+          "example": "Descrição da instituição"
+        }
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
         }
       }
     }
   },
-  "components": {
-    "schemas": {
-      "Post": {
-        "type": "Object",
-        "Properties": {
-          "title": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "link": {
-            "type": "string"
-          },
-          "tags": [
-            {
-              "type": "string"
-            }
-          ]
-        },
-        "example": {
-          "title": "todoist",
-          "description": "task manager",
-          "link": "https://www.todoist.com",
-          "tags": ["Todo", "Agenda management", "organization", "productivity"]
-        }
-      },
-      "Get": {
-        "type": "Object",
-        "Properties": {
-          "_id": {
-            "type": "string"
-          },
-          "active": {
-            "type": "boolean"
-          },
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "title": "todoist",
-          "description": "task manager",
-          "link": "https://www.todoist.com",
-          "tags": ["Todo", "Agenda management", "organization", "productivity"]
-        }
-      },
-      "Delete": {
-        "type": "Object",
-        "Properties": {
-          "Error": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "Error": "Not found a record for id: 1212-6421kq-12316"
-        }
-      }
-    },
-    "securitySchemes": {
-      "bearerToken": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
-      }
-    }
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
   }
 }
