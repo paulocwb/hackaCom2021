@@ -3,10 +3,10 @@ import {hashPwd} from "../../../app/utils/encryptPass";
 
 const membersSchema = mongoose.Schema(
 	{
-	name:{type: String,unique: true},
-	email:{type: String,required: true,unique: true},
-	password:{type: String,required: true},
-	cargo:{type: String,enum:['professor','colaborador','coordenador'],required: true},
+	name:{type: String,},
+	email:{type: String,},
+	password:{type: String,},
+	cargo:{type: String,enum:['professor','colaborador','coordenador'],},
 	active: { type:Boolean, default: true } 
 })
 
