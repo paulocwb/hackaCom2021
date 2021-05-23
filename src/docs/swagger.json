@@ -23,6 +23,22 @@
         "description": "Veja mais",
         "url": "http://linkedunion.io"
       }
+    },
+    {
+      "name": "estudante",
+      "description": "Tudo sobre estudante",
+      "externalDocs": {
+        "description": "Veja mais",
+        "url": "http://linkedunion.io"
+      }
+    },
+    {
+      "name": "projeto",
+      "description": "Tudo sobre o Projeto",
+      "externalDocs": {
+        "description": "Veja mais",
+        "url": "http://linkedunion.io"
+      }
     }
   ],
   "schemes": ["https", "http"],
@@ -49,6 +65,36 @@
         "responses": {
           "405": {
             "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ]
+      },
+      "get": {
+        "tags": ["instituicao"],
+        "summary": "Listar as instituição",
+        "description": "",
+        "operationId": "getInstituicao",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Estudante"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Estudante não encontrada"
           }
         },
         "security": [
@@ -166,7 +212,7 @@
         ]
       }
     },
-    "/instituicao/{id}/member": {
+    "/instituicao/{id}/members": {
       "get": {
         "tags": ["instituicao"],
         "summary": "Encontrar Membros da Instituição",
@@ -186,7 +232,10 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/Instituicao"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Instituicao"
+              }
             }
           },
           "400": {
@@ -328,6 +377,343 @@
           }
         ]
       }
+    },
+    "/estudante": {
+      "post": {
+        "tags": ["estudante"],
+        "summary": "Inserir um novo estudante",
+        "description": "",
+        "operationId": "addEstudante",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Dados do estudante",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Estudante"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ]
+      },
+      "get": {
+        "tags": ["estudante"],
+        "summary": "Listar estudantes",
+        "description": "Retorna os estudante",
+        "operationId": "getEstudantes",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Estudante"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Estudante não encontrada"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/estudante/{id}": {
+      "get": {
+        "tags": ["estudante"],
+        "summary": "Listar estudantes",
+        "description": "Retorna dados do estudante",
+        "operationId": "getEstudante",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do estudante",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Estudante"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Estudante não encontrada"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "put": {
+        "tags": ["estudante"],
+        "summary": "Atualizar dados do estudante",
+        "description": "",
+        "operationId": "updateEstudante",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do estudante à ser atualizado",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Dados do estudante",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Estudante"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["estudante"],
+        "summary": "Deletar uma estudante",
+        "description": "",
+        "operationId": "deleteEstudante",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do estudante a ser deletado",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Estudante não encontrada"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ]
+      }
+    },
+    "/projeto": {
+      "post": {
+        "tags": ["projeto"],
+        "summary": "Inserir um novo projeto",
+        "description": "",
+        "operationId": "addProjeto",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Dados do projeto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Projeto"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ]
+      },
+      "get": {
+        "tags": ["projeto"],
+        "summary": "Listar os projetos",
+        "description": "",
+        "operationId": "listProjeto",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Listar projetos",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Projeto"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ]
+      }
+    },
+    "/projeto/{id}": {
+      "get": {
+        "tags": ["projeto"],
+        "summary": "Listar dados projetos",
+        "description": "",
+        "operationId": "listProjetoId",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do Projeto",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Projeto"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ]
+      },
+      "put": {
+        "tags": ["projeto"],
+        "summary": "Atualizar dados do projeto",
+        "description": "",
+        "operationId": "updateProjeto",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do projeto à ser atualizado",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Dados do projeto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Projeto"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["projeto"],
+        "summary": "Deletar um projeto",
+        "description": "",
+        "operationId": "deleteProjeto",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do proejto a ser deletado",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Projeto não encontrada"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ]
+      }
     }
   },
   "securityDefinitions": {
@@ -369,6 +755,75 @@
         }
       }
     },
+    "Skill": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Nome da Skill"
+        }
+      }
+    },
+    "Status": {
+      "type": "object",
+      "properties": {
+        "hoursPrize": {
+          "type": "integer",
+          "example": "10"
+        },
+        "startDate": {
+          "type": "number"
+        },
+        "finishDate": {
+          "type": "number"
+        },
+        "activities": {
+          "$ref": "#/definitions/Atividade"
+        }
+      }
+    },
+    "Estudante": {
+      "type": "object",
+      "required": ["email", "orgname", "password", "role", "about"],
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "example": "email-aluno@email.com"
+        },
+        "name": {
+          "type": "string",
+          "example": "Nome do Aluno"
+        },
+        "password": {
+          "type": "string",
+          "example": "********"
+        },
+        "college": {
+          "type": "string",
+          "example": ""
+        },
+        "class": {
+          "type": "string",
+          "example": ""
+        },
+        "projects": {
+          "$ref": "#/definitions/Projeto"
+        },
+        "skills": {
+          "$ref": "#/definitions/Skill"
+        },
+        "bio": {
+          "type": "string",
+          "example": "Descrição da Experiencia do Aluno"
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    },
     "Instituicao": {
       "type": "object",
       "required": ["email", "orgname", "password", "role", "about"],
@@ -406,6 +861,60 @@
         "about": {
           "type": "string",
           "example": "Descrição da instituição"
+        }
+      }
+    },
+    "Atividade": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Nome da Atividade"
+        },
+        "url": {
+          "type": "string",
+          "example": "Url link"
+        },
+        "description": {
+          "type": "string",
+          "example": "Descrição da Atividade"
+        },
+        "status": {
+          "type": "string",
+          "example": "Status Atividade",
+          "enum": ["DOING", "FINISHED"]
+        },
+        "student": {
+          "$ref": "#/definitions/Estudante"
+        }
+      }
+    },
+    "Projeto": {
+      "type": "object",
+      "required": ["shortDescription", "fullDescription", "org", "deadline"],
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "shortDescription": {
+          "type": "string",
+          "example": "Descrição simplificada do projeto"
+        },
+        "fullDescription": {
+          "type": "string",
+          "example": "Descrição completa do Projeto"
+        },
+        "links": {
+          "type": "string",
+          "example": "********"
+        },
+        "status": {
+          "$ref": "#/definitions/Status"
+        },
+        "role": {
+          "type": "string",
+          "description": "Tipo da Instituição",
+          "enum": ["OSC", "INSTITUICAO"]
         }
       }
     },
