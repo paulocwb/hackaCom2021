@@ -7,17 +7,17 @@ class AssignStudent{
 
 	async execute(request, response) {
 		
-		this.projectId = request.params.projectId;
+		this.projectId = request.params.projectid;
 		this.studentId = request.headers.sid;
 		try{
 			
 			const projectExists = await this.isUnique();
-			if(!projectExists) return httpResponses.notFoundResponse({ message:"Project didn't exist"});
+			if(!projectExists) return httpResponses.notFoundResponse({ message:"Project didn't exist"},response);
 			
-			await this.repository.assignStudent({projectId, studentId});
-			return httpResponses.okResponse({});
+			await this.repository.assignStudent({projectId:this.projectId, studentId:this.studentId});
+			return httpResponses.okResponse({},response);
 		}catch (err) {
-			return httpResponses.badRequestResponse({message:err.message});
+			return httpResponses.badRequestResponse({message:err.message},response);
 
 		}
 	}

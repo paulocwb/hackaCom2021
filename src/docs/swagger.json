@@ -4,7 +4,7 @@
     "description": "Guia do Desenvolvedor",
     "version": "1.0.0",
     "title": "Swagger - Linkedu - HackCom - #time18",
-    "termsOfService": "http://linkedunion.io/terms/",
+    "termsOfService": "https://linkedunion.io/terms/",
     "contact": {
       "email": "contato@linkedunion.io"
     },
@@ -29,7 +29,7 @@
       "description": "Tudo sobre estudante",
       "externalDocs": {
         "description": "Veja mais",
-        "url": "http://linkedunion.io"
+        "url": "https://linkedunion.io"
       }
     },
     {
@@ -37,11 +37,11 @@
       "description": "Tudo sobre o Projeto",
       "externalDocs": {
         "description": "Veja mais",
-        "url": "http://linkedunion.io"
+        "url": "https://linkedunion.io"
       }
     }
   ],
-  "schemes": ["https", "http"],
+  "schemes": ["https"],
   "paths": {
     "/instituicao": {
       "post": {

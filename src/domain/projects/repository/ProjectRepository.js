@@ -1,6 +1,12 @@
 import { projectModel } from "../model/project.model";
 
 class ProjectRepository {
+
+	async getProjectById(id){
+		return await projectModel.findById(id).lean(true);
+	}
+
+
 	async createProject(data) {
 		const project = await projectModel.create(data);
 		return project.toJSON();
@@ -39,14 +45,14 @@ class ProjectRepository {
 	}
 
 	async removeTasks ({taskId}){
-		const proj  = await projectModel.deleteOne({'status.tasks._id'::taskId});
+		const proj  = await projectModel.deleteOne({'status.tasks._id':taskId});
 		return;
 	}
 	async completeProjectTask({taskId}){
-
+		throw new Error ('To be implemented')
 	}
 	async completeProject({projectId}){
-
+		throw new Error ('To be implemented')
 	}
 }
 export { ProjectRepository };

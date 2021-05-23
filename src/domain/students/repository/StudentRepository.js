@@ -18,7 +18,9 @@ class StudentRepository {
 		return student;
 	}
 	
-	async awardStudentHour({studentId}){}
+	async awardStudentHour({studentId}){
+		throw new Error ('To be implemented')
+	}
 }
 
 export { StudentRepository };

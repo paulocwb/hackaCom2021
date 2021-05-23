@@ -12,12 +12,12 @@ class UnassignStudent{
 		try{
 			
 			const projectExists = await this.isUnique();
-			if(!projectExists) return httpResponses.notFoundResponse({ message:"Project didn't exist"});
+			if(!projectExists) return httpResponses.notFoundResponse({ message:"Project didn't exist"},response);
 			
 			await this.repository.unassignStudent({projectId, studentId});
-			return httpResponses.okResponse({});
+			return httpResponses.okResponse({},response);
 		}catch (err) {
-			return httpResponses.badRequestResponse({message:err.message});
+			return httpResponses.badRequestResponse({message:err.message},response);
 		}
 	}
 

@@ -14,13 +14,13 @@ router.get('/',logRequest,(request,response)=>{
 
 });
 
-router.post('/:projectId/assign',logRequest,(request, response)=>{
+router.post('/:projectid/assign',logRequest,(request, response)=>{
 	
-	projectController.assignStudent(request,response);
+	projectController.assignStudent.execute(request,response);
 });
 
 router.delete('/:projectId/unassign',logRequest,(request, response)=>{
 	
-	projectController.unassignStudent(request,response);
+	projectController.unassignStudent.execute(request,response);
 })
 export default router;
