@@ -3,6 +3,9 @@
 
     
 # LinkEdu
+
+Projeto executado na participação no [Social HackaCom-2021](https://institutogrpcom.org.br/social-hackacom-hackathon-social-de-comunicacao-do-grpcom-esta-com-inscricoes-abertas/)
+entre os dias 21/05/2021 e 23/05/2021
 Veja nossa apresentação completa:
 
 
