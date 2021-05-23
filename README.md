@@ -32,6 +32,7 @@ API Completa do BackEnd
 #### FrontEnd
 [Figma](https://www.figma.com/file/Ns4RpCLF9FIYNGdIe3R7wt/3d-shape-Landing-page-Community?node-id=0%3A1)
 
+[Apresentação](https://www.canva.com/design/DAEfVndNifM/view)
   
 ## Tech Stack
 
