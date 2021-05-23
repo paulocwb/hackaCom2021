@@ -9,8 +9,8 @@ const activitiesSchema = mongoose.Schema({
 	name: { type: String },
 	url: [{ type: String}],
 	description:{ type: String},
-	status:{ type: String, enum:['DOING','FINISHED']}
-
+	status:{ type: String, enum:['DOING','FINISHED']},
+	student:{ type: String, ref:"Student"}
 })
 
 const projectSchema = mongoose.Schema({

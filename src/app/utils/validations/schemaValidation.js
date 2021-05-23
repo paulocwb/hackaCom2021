@@ -17,4 +17,11 @@ const memberSchema = Joi.object({
 	cargo: Joi.string().required(),
 });
 
-export { instituteSchema,memberSchema };
+
+const inviteSchema = Joi.object({
+	studentEmail: Joi.string().email().required(),
+	studentName: Joi.string().required(),
+	institute: Joi.string().required(),
+})
+
+export { instituteSchema,memberSchema,inviteSchema };

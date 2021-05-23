@@ -21,6 +21,7 @@ const instituteSchema = mongoose.Schema(
 		active: { type: Boolean, default: true },
 		website:{ type: String},
 		about: { type: String},
+		picture:{ type: String}
 	},
 	{ timestamps: true }
 );
