@@ -1,2 +1,2 @@
   
-web: pm2 start linkedu
+web: yarn start
