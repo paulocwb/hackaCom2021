@@ -5,7 +5,7 @@
 	"scripts": {
 		"start": "node lib/server.js",
 		"postinstall": " yarn build ",
-		"dev:dotenv": "nodemon --exec babel-node -r dotenv/config src/server.js ",
+		"dev:dotenv": "nodemon --exec babel-node -r dotenv/config lib/server.js ",
 		"build": "babel src/ -d lib/ --copy-files"
 	},	
 	"engines": {
