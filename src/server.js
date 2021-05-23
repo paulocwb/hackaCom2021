@@ -14,7 +14,7 @@ const app = new App();
 			app.loadMiddleware(mid);
 		});
 		Object.entries(routes).forEach(route =>{
-			app.loadRoute(`/v1/${route[0]}`,route[1].default)
+			app.loadRoute(`${process.env.DEFAULT_URL}/${route[0]}`,route[1].default)
 		})
 		
 		app.start(port);
