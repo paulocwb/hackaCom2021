@@ -1,7 +1,5 @@
+import idFactory from "../../../app/utils/idGenerator";
 import mongoose from "mongoose";
-const skillSchema = mongoose.Schema({
-	skill: { type: String },
-});
 const studentSchema = mongoose.Schema(
 	{
 		_id: { type: String },
@@ -9,17 +7,22 @@ const studentSchema = mongoose.Schema(
 		name: { type: String, required },
 		password: { type: String, required: true },
 		college: { type: String, ref: "User" },
-		class: { type: String, required: true },
+		classroom: { type: String, required: true },
 		projects: { type: String, ref: "Project" },
-		skills: [skillSchema],
+		tags: [{ _id: mongoose.Schema.Types.ObjectId,
+			ref: "Tag" }],
 		bio: { type: String },
-		active: { type: Boolean },
+		active: { type: Boolean,default: true},
 	},
 	{ timestamps: true }
 );
 
-const skillModel = mongoose.model("Skill", skillSchema);
+studentSchema.pre('save',function(){
+	if(this.isNew){
+		this._id = idFactory();
+	}
+})
 
 const studentModel = mongoose.model("Student", studentSchema);
 
-export { studentModel, skillModel };
+export { studentModel };

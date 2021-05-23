@@ -1,0 +1,36 @@
+import httpResponses from "../../../app/utils/httpResponses/ResponsesJson";
+class AssignStudent{
+
+	constructor(repository) {
+		this.repository = repository;
+	}
+
+	async execute(request, response) {
+		
+		this.projectId = request.params.projectId;
+		this.studentId = request.headers.sid;
+		try{
+			
+			const projectExists = await this.isUnique();
+			if(!projectExists) return httpResponses.notFoundResponse({ message:"Project didn't exist"});
+			
+			await this.repository.assignStudent({projectId, studentId});
+			return httpResponses.okResponse({});
+		}catch (err) {
+			return httpResponses.badRequestResponse({message:err.message});
+
+		}
+	}
+
+	async isUnique() {
+		const project = await this.repository.getProjectById(this.projectId);
+		if(project){
+			const userAlreadyAssigned = project.students.find(student => student._id ===this.studentId);
+			if(userAlreadyAssigned) return false
+			return true;
+			};
+		return false;
+	}
+}
+
+export { AssignStudent };

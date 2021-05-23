@@ -17,11 +17,25 @@ const memberSchema = Joi.object({
 	cargo: Joi.string().required(),
 });
 
-
 const inviteSchema = Joi.object({
 	studentEmail: Joi.string().email().required(),
 	studentName: Joi.string().required(),
 	institute: Joi.string().required(),
-})
+});
 
-export { instituteSchema,memberSchema,inviteSchema };
+const projectSchema = Joi.object({
+	shortDescription: Joi.string().required(),
+	fullDescription: Joi.string().required(),
+	links: Joi.array().items(
+		Joi.object({
+			url: Joi.string(),
+		})
+	),
+	creator: Joi.string().required(),
+	deadline: Joi.date().required(),
+	tags: Joi.array().items({
+		_id: Joi.string().required(),
+	}),
+});
+
+export { instituteSchema, memberSchema, inviteSchema,projectSchema };

@@ -1,32 +1,32 @@
 import mongoose from "mongoose";
-
+import idFactory from "../../../app/utils/idGenerator";
 const tagSchema = mongoose.Schema({
 	name: String,
 });
 
 
-const activitiesSchema = mongoose.Schema({
+const taskSchema = mongoose.Schema({
 	name: { type: String },
 	url: [{ type: String}],
 	description:{ type: String},
 	status:{ type: String, enum:['DOING','FINISHED']},
-	student:{ type: String, ref:"Student"}
+	students:[{ type: String, ref:"Student"}]
 })
 
 const projectSchema = mongoose.Schema({
 	_id: { type: String },
 	shortDescription: { type: String },
 	fullDescription: { type: String },
-	links: [{ url: string }],
+	links: [{ url: String }],
 	status:{
 		hoursPrize:{type:Number, min:0},
 		startDate:{ type: Date, default: Date.now},
 		finishDate:{ type: Date},
-		activities:[activitiesSchema]
+		tasks:[taskSchema]
 	},
-	university: { type: String, ref: "User" },
-	org: { type: String, ref: "User", required: true },
-	studentsAllocated: [
+	assigned: { type: String, ref: "User" },
+	creator: { type: String, ref: "User", required: true },
+	students: [
 		{
 			type: String,
 			ref: "Student",
@@ -34,8 +34,13 @@ const projectSchema = mongoose.Schema({
 	],
 	deadline: { type: Date },
 	tags: [tagSchema],
-	skills: [skillSchema],
 });
+
+projectSchema.pre('save',function(){
+	if(this.isNew){
+		this._id = idFactory();
+	}
+})
 
 const tagModel = mongoose.model("Tag", tagSchema);
 
