@@ -7,11 +7,6 @@
 Com base na análise do cenário das Organizações da Sociedade Civil (OSCs) , buscamos desenvolver uma plataforma de conexão entre Instituições e Universidades, de modo que os estudantes possam auxiliar as organizações e obter experiência de mercado.
 
 Nosso projeto consiste no desenvolvimento de uma plataforma de conexão entre as OSCs e universidades, para que possam ajudar as instituições no desenvolvimento de seus projetos de comunicação, através da seleção de turmas e alunos qualificados para suprir essas demandas.
-## Acknowledgements
-
- - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
 
   
 ## Authors
