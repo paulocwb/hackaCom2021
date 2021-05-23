@@ -9,6 +9,7 @@ const studentSchema = mongoose.Schema(
 		college: { type: String, ref: "User" },
 		classroom: { type: String, required: true },
 		projects: { type: String, ref: "Project" },
+		hoursAwarded:{ type: Number, default:0},
 		tags: [{ _id: mongoose.Schema.Types.ObjectId,
 			ref: "Tag" }],
 		bio: { type: String },

@@ -17,6 +17,8 @@ class StudentRepository {
 		const student = await studentModel.findById(id).lean(true);
 		return student;
 	}
+	
+	async awardStudentHour({studentId}){}
 }
 
 export { StudentRepository };

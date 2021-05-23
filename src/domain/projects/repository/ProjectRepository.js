@@ -25,18 +25,28 @@ class ProjectRepository {
 		return project.students;
 	}
 
-	async acceptProject({projectId,instituteId}){
-		return await projectModel.updateOne({_id:projectId},{assigned:instituteId});
+	async acceptProject({projectId,instituteId,status}){
+		return await projectModel.updateOne({_id:projectId},{assigned:instituteId,status});
 	}
 
 	async listStudentProjects(studentId){
 		return await projectModel.find({'students._id':studentId}).lean(true);
-
 	}
 
 	async insertTasks({task,projectId}){
-		const project = await projectModel.findByIdAndUpdate(projectId,{$push:{tasks:task}}).lean(true);
+		const project = await projectModel.findByIdAndUpdate(projectId,{$push:{'status.tasks':task}}).lean(true);
 		return project.tasks;
+	}
+
+	async removeTasks ({taskId}){
+		const proj  = await projectModel.deleteOne({'status.tasks._id'::taskId});
+		return;
+	}
+	async completeProjectTask({taskId}){
+
+	}
+	async completeProject({projectId}){
+
 	}
 }
 export { ProjectRepository };

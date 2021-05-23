@@ -22,6 +22,7 @@ const projectSchema = mongoose.Schema({
 		hoursPrize:{type:Number, min:0},
 		startDate:{ type: Date, default: Date.now},
 		finishDate:{ type: Date},
+		winner: { type: String,ref: "Student"},
 		tasks:[taskSchema]
 	},
 	assigned: { type: String, ref: "User" },
