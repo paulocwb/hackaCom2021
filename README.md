@@ -3,6 +3,10 @@
 
     
 # LinkEdu
+Veja nossa apresentação completa:
+
+
+[Apresentação](https://www.canva.com/design/DAEfVndNifM/view)
 
 Com base na análise do cenário das Organizações da Sociedade Civil (OSCs) , buscamos desenvolver uma plataforma de conexão entre Instituições e Universidades, de modo que os estudantes possam auxiliar as organizações e obter experiência de mercado.
 
@@ -32,7 +36,6 @@ API Completa do BackEnd
 #### FrontEnd
 [Figma](https://www.figma.com/file/Ns4RpCLF9FIYNGdIe3R7wt/3d-shape-Landing-page-Community?node-id=0%3A1)
 
-[Apresentação](https://www.canva.com/design/DAEfVndNifM/view)
   
 ## Tech Stack
 
