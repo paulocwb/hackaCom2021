@@ -22,7 +22,7 @@ Nosso projeto consiste no desenvolvimento de uma plataforma de conexão entre as
 - [Nicholas Martini](https://www.linkedin.com/in/nicholas-martini/)
 - [Bruno Masi](https://www.linkedin.com/in/bmasi/)
 - [Helen Castanho](https://www.linkedin.com/in/helen-castanho-2284a3121/)
-- [Yohana trancoso nunes Ferreira](Yohanatrancoso@gmail.com)
+- [Yohana Trancoso Nunes Ferreira](Yohanatrancoso@gmail.com)
 
 ## Documentation
 
