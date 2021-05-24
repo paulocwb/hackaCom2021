@@ -4,6 +4,13 @@
     
 # LinkEdu
 
+Projeto executado na participação no [Social HackaCom-2021](https://institutogrpcom.org.br/social-hackacom-hackathon-social-de-comunicacao-do-grpcom-esta-com-inscricoes-abertas/)
+entre os dias 21/05/2021 e 23/05/2021
+Veja nossa apresentação completa:
+
+
+[Apresentação](https://www.canva.com/design/DAEfVndNifM/view)
+
 Com base na análise do cenário das Organizações da Sociedade Civil (OSCs) , buscamos desenvolver uma plataforma de conexão entre Instituições e Universidades, de modo que os estudantes possam auxiliar as organizações e obter experiência de mercado.
 
 Nosso projeto consiste no desenvolvimento de uma plataforma de conexão entre as OSCs e universidades, para que possam ajudar as instituições no desenvolvimento de seus projetos de comunicação, através da seleção de turmas e alunos qualificados para suprir essas demandas.
@@ -35,7 +42,7 @@ API Completa do BackEnd
   
 ## Tech Stack
 
-**Client:** React, Redux, TailwindCSS
+**Client:** React
 
 **Server:** Node, Express
 
