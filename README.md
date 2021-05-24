@@ -28,9 +28,6 @@ Nosso projeto consiste no desenvolvimento de uma plataforma de conexão entre as
 
 [Documentation](https://api.linkedunion.io/docs)
 
-  
-## Demo
-
 
 #### BackEnd
 API Completa do BackEnd
