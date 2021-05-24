@@ -26,13 +26,13 @@ Nosso projeto consiste no desenvolvimento de uma plataforma de conexão entre as
 
 ## Documentation
 
-[Documentation](https://api.linkedunion.io/docs)
+[Documentation](https://api.linkedunion.io/v1/docs)
 
 
 #### BackEnd
 API Completa do BackEnd
 
-[API](https://api.linkedunion.io/docs)
+[API](https://api.linkedunion.io/v1/docs)
 #### FrontEnd
 [Figma](https://www.figma.com/file/Ns4RpCLF9FIYNGdIe3R7wt/3d-shape-Landing-page-Community?node-id=0%3A1)
 
