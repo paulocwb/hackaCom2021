@@ -27,6 +27,7 @@ Nosso projeto consiste no desenvolvimento de uma plataforma de conexão entre as
 - [Bruno Masi](https://www.linkedin.com/in/bmasi/)
 - [Helen Castanho](https://www.linkedin.com/in/helen-castanho-2284a3121/)
 - [Yohana Trancoso Nunes Ferreira](Yohanatrancoso@gmail.com)
+- Luana Perdoncini Roballo Cruz
 
 ## Documentation
 
