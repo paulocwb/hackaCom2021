@@ -6,10 +6,14 @@
 
 Projeto executado na participação no [Social HackaCom-2021](https://institutogrpcom.org.br/social-hackacom-hackathon-social-de-comunicacao-do-grpcom-esta-com-inscricoes-abertas/)
 entre os dias 21/05/2021 e 23/05/2021
+
 Veja nossa apresentação completa:
 
-
 [Apresentação](https://www.canva.com/design/DAEfVndNifM/view)
+
+Pitch:
+
+[aqui](https://youtu.be/xlG7P0neviw)
 
 Com base na análise do cenário das Organizações da Sociedade Civil (OSCs) , buscamos desenvolver uma plataforma de conexão entre Instituições e Universidades, de modo que os estudantes possam auxiliar as organizações e obter experiência de mercado.
 
