@@ -41,6 +41,6 @@ API Completa do BackEnd
 
 **Client:** React
 
-**Server:** Node, Express
+**Server:** Node, Express,MongoDB
 
   
