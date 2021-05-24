@@ -42,7 +42,7 @@ API Completa do BackEnd
   
 ## Tech Stack
 
-**Client:** React, Redux, TailwindCSS
+**Client:** React
 
 **Server:** Node, Express
 
