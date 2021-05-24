@@ -1,9 +1,9 @@
 {
 	"name": "linkedu",
 	"version": "1.0.0",
-	"main": "lib/server.js",
+	"main": " lib/server.js",
 	"scripts": {
-		"start": "node lib/server.js",
+		"start": "node lib/server.js -r dotenv/config",
 		"postinstall": " yarn build ",
 		"dev:dotenv": "nodemon --exec babel-node -r dotenv/config lib/server.js ",
 		"build": "babel src/ -d lib/ --copy-files"
